@@ -4,6 +4,6 @@
         "host":"localhost"
     },
     "db":{
-        "url":"mongodb+srv://jayalab:lol123..@cluster0.akjbboy.mongodb.net/?retryWrites=true&w=majority"
+        "url": "mongodb://mongo:UybJsAGpsbEkii4aO0cz@containers-us-west-85.railway.app:7387"
     }
 }
