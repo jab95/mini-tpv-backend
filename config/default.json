@@ -1,0 +1,9 @@
+{
+    "app":{
+        "port":3100,
+        "host":"localhost"
+    },
+    "db":{
+        "url":"mongodb+srv://jayalab:lol123..@cluster0.akjbboy.mongodb.net/?retryWrites=true&w=majority"
+    }
+}
