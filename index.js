@@ -10,9 +10,7 @@ appDatabase.initDatabase();
     //el await aqui no se si haria falta
     await require("./public/javascript/appInit")(express,app);
 
-    http.createServer(app).listen(config2.PORT,config2.DB_HOST, function(req,res){
-    });
-
+    http.createServer(app).listen(config2.PORT)
     
     module.exports = app;
 })();
