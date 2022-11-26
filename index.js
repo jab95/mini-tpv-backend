@@ -17,7 +17,8 @@ appDatabase.initDatabase();
         key: fs.readFileSync("certificados/key.pem"),
         cert: fs.readFileSync("certificados/cert.pem"),
         requestCert: false,
-        rejectUnauthorized: false
+        rejectUnauthorized: false,
+        secureOptions: require("constants").SSL_OP_NO_SSLv3 | require("constants").SSL_OP_NO_TLSv1
 
     }
 
