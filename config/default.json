@@ -1,9 +1,3 @@
 {
-    "app":{
-        "port":3100,
-        "host":"localhost"
-    },
-    "db":{
-        "url": "mongodb://mongo:UybJsAGpsbEkii4aO0cz@containers-us-west-85.railway.app:7387"
-    }
+  
 }

@@ -1,13 +1,9 @@
 const http = require("http");
-const config = require("config");
 const express = require("express");
 const app = express();
 const appDatabase = require("./public/javascript/appDatabase");
-const io = require('socket.io')(http);
-const comandaManager = require("./public/javascript/comandaManager")
-
+const config2 = require("./config/config")
 appDatabase.initDatabase();
-
 
 (async function(){
 
@@ -15,7 +11,7 @@ appDatabase.initDatabase();
     await require("./public/javascript/appInit")(express,app);
 
 
-    http.createServer(app).listen(config.get("app.port"),config.get("app.host"),function(req,res){
+    http.createServer(app).listen(config2.PORT,config2.DB_HOST, function(req,res){
     });
 
     
