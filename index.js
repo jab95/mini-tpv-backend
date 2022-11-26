@@ -16,7 +16,7 @@ appDatabase.initDatabase();
     {
         key: fs.readFileSync("certificados/key.pem"),
         cert: fs.readFileSync("certificados/cert.pem"),
-        requestCert: true,
+        requestCert: false,
         rejectUnauthorized: false
 
     }
