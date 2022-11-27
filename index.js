@@ -13,7 +13,7 @@ appDatabase.initDatabase();
 
     //el await aqui no se si haria falta
     await require("./public/javascript/appInit")(express,app);
-    const client = redis.createClient({host:"0.0.0.0"}); //creates a new client
+    const client = redis.createClient(process.env.PORT,"0.0.0.0"); //creates a new client
 
 
     client.on('connect', function() {

@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Comanda = require("../../models/comanda").Comanda
 const WebSocketServer = require('ws');
 const redis = require('redis');
-const publisher = redis.createClient();
+const publisher = redis.createClient(process.env.PORT,"0.0.0.0");
 
 publisher.connect()
 console.log("The WebSocket server is running on port 3101 111");
