@@ -5,7 +5,7 @@ const appDatabase = require("./public/javascript/appDatabase");
 const config2 = require("./config/config")
 const fs = require("fs")
 const WebSocketServer = require('ws');
-const redis = require('redis');
+// const redis = require('redis');
 
 appDatabase.initDatabase();
 
@@ -13,12 +13,12 @@ appDatabase.initDatabase();
 
     //el await aqui no se si haria falta
     await require("./public/javascript/appInit")(express,app);
-    const client = redis.createClient(process.env.PORT,"0.0.0.0"); //creates a new client
+    // const client = redis.createClient(process.env.PORT,"0.0.0.0"); //creates a new client
 
 
-    client.on('connect', function() {
-        console.log('connected');
-    });
+    // client.on('connect', function() {
+    //     console.log('connected');
+    // });
 
 
     const options = 
@@ -31,27 +31,27 @@ appDatabase.initDatabase();
         // honorCipherOrder:true
     }
 
-    const server = http.createServer(options,app).listen(process.env.PORT)
-    const wss = new WebSocketServer.Server({server})
-    const subscriber = client.duplicate();
+    http.createServer(options,app).listen(process.env.PORT)
+    // const wss = new WebSocketServer.Server({server})
+    // // const subscriber = client.duplicate();
 
-    wss.on('connection', function open(ws) {
-      ws.send("holaaaaaa")
-        console.log("conectado")
-    });
+    // wss.on('connection', function open(ws) {
+    //   ws.send("holaaaaaa")
+    //     console.log("conectado")
+    // });
       
-  await subscriber.connect();
+//   await subscriber.connect();
 
-  await subscriber.subscribe('mensaje', (message) => {
-        wss.clients.forEach(async function each(myClient){
-            if(myClient.readyState===WebSocketServer.OPEN){
-                await myClient.send(message)
-            }
-        })
+//   await subscriber.subscribe('mensaje', (message) => {
+//         wss.clients.forEach(async function each(myClient){
+//             if(myClient.readyState===WebSocketServer.OPEN){
+//                 await myClient.send(message)
+//             }
+//         })
     
 
-    // 'message'
-  });
+//     // 'message'
+//   });
 
 
     module.exports = app;
