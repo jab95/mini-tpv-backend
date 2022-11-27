@@ -31,7 +31,7 @@ appDatabase.initDatabase();
         // honorCipherOrder:true
     }
 
-    http.createServer(options,app).listen(process.env.PORT)
+    http.createServer(options,app).listen(3100)
     // const wss = new WebSocketServer.Server({server})
     // // const subscriber = client.duplicate();
 
