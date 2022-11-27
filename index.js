@@ -27,7 +27,7 @@ appDatabase.initDatabase();
         cert: fs.readFileSync("./certificados/cert.pem","utf8"),
         requestCert: false,
         rejectUnauthorized: false,
-        secureOptions: require("constants").SSL_OP_NO_SSLv3 | require("constants").SSL_OP_NO_TLSv1,
+        secureOptions: require("constants").SSL_OP_NO_SSLv3 | require("constants").SSL_OP_NO_TLSv1_2,
         honorCipherOrder:true
     }
 
@@ -35,7 +35,8 @@ appDatabase.initDatabase();
     const wss = new WebSocketServer.Server({server})
     const subscriber = client.duplicate();
 
-    wss.on('open', function open() {
+    wss.on('connection', function open(ws) {
+      ws.send("holaaaaaa")
         console.log("conectado")
     });
       
