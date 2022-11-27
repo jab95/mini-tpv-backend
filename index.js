@@ -14,12 +14,12 @@ appDatabase.initDatabase();
 
     const options = 
     {
-        key: fs.readFileSync("./certificados/key.pem"),
-        cert: fs.readFileSync("./certificados/cert.pem"),
+        key: fs.readFileSync("./certificados/key.pem","utf8"),
+        cert: fs.readFileSync("./certificados/cert.pem","utf8"),
         requestCert: false,
         rejectUnauthorized: false,
-        secureOptions: require("constants").SSL_OP_NO_SSLv3 | require("constants").SSL_OP_NO_TLSv1
-
+        secureOptions: require("constants").SSL_OP_NO_SSLv3 | require("constants").SSL_OP_NO_TLSv1,
+        honorCipherOrder:true
     }
 
     https.createServer(options,app).listen(config2.PORT)
