@@ -1,9 +1,11 @@
-const https = require("https");
+const http = require("http");
 const express = require("express");
 const app = express();
 const appDatabase = require("./public/javascript/appDatabase");
 const config2 = require("./config/config")
 const fs = require("fs")
+const WebSocketServer = require('ws');
+const redis = require('redis');
 
 appDatabase.initDatabase();
 
@@ -11,6 +13,13 @@ appDatabase.initDatabase();
 
     //el await aqui no se si haria falta
     await require("./public/javascript/appInit")(express,app);
+    const client = redis.createClient(); //creates a new client
+
+
+    client.on('connect', function() {
+        console.log('connected');
+    });
+
 
     const options = 
     {
@@ -22,8 +31,28 @@ appDatabase.initDatabase();
         honorCipherOrder:true
     }
 
-    https.createServer(options,app).listen(config2.PORT)
+    const server = http.createServer(options,app).listen(3100)
+    const wss = new WebSocketServer.Server({server})
+    const subscriber = client.duplicate();
+
+    wss.on('open', function open() {
+        console.log("conectado")
+    });
+      
+  await subscriber.connect();
+
+  await subscriber.subscribe('mensaje', (message) => {
+        wss.clients.forEach(async function each(myClient){
+            if(myClient.readyState===WebSocketServer.OPEN){
+                await myClient.send(message)
+            }
+        })
     
+
+    // 'message'
+  });
+
+
     module.exports = app;
 })();
         

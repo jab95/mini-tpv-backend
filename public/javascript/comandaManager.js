@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 const Comanda = require("../../models/comanda").Comanda
-const wss = require("./appWebSocket").wss
 const WebSocketServer = require('ws');
+const redis = require('redis');
+const publisher = redis.createClient();
 
+publisher.connect()
 console.log("The WebSocket server is running on port 3101 111");
 
-wss.on("connection",function connection(ws){
-    console.log("cliente conectado")
-})
+
 
 let enviarDatosACliente = (comanda)=>{
 
@@ -27,9 +27,10 @@ let createComanda = async (mesa,platos)=>{
     
     });
     
-    await comanda.save().then(dat=>{
-        enviarDatosACliente(dat)
-
+    await comanda.save().then(async dat=>{
+        // enviarDatosACliente(dat)
+        await publisher.publish("mensaje",JSON.stringify(dat))
+        
     })
 
 }

@@ -21,7 +21,6 @@ router.get("/getAll",async (req,response,next)=>{
 router.post("/add",async (req,res,next)=>{
 
     let comanda = await comandaManager.createComanda(req.body.mesa,req.body.platos);
-    console.log(comanda)
     res.status(200).json(comanda)
     next()
 })
