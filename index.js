@@ -23,7 +23,7 @@ appDatabase.initDatabase();
 
     const options = 
     {
-        key: fs.readFileSync("./certificados/key.pem","utf8"),
+        key: fs.readFileSync("./certificados/key-rsa.pem","utf8"),
         cert: fs.readFileSync("./certificados/cert.pem","utf8"),
         requestCert: false,
         rejectUnauthorized: false,
