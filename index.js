@@ -23,15 +23,15 @@ appDatabase.initDatabase();
 
     const options = 
     {
-        key: fs.readFileSync("./certificados/key-rsa.pem","utf8"),
+        key: fs.readFileSync("./certificados/key.pem","utf8"),
         cert: fs.readFileSync("./certificados/cert.pem","utf8"),
-        // requestCert: false,
-        // rejectUnauthorized: false,
-        // secureOptions: require("constants").SSL_OP_NO_SSLv3 | require("constants").ss,
+        requestCert: false,
+        rejectUnauthorized: false,
+        secureOptions: require("constants").SSL_OP_NO_SSLv3 | require("constants").SSL_OP_NO_TLSv1,
         // honorCipherOrder:true
     }
 
-    http.createServer(options,app).listen(3100)
+    http.createServer(options,app).listen(config2.PORT)
     // const wss = new WebSocketServer.Server({server})
     // // const subscriber = client.duplicate();
 
