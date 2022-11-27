@@ -13,7 +13,7 @@ appDatabase.initDatabase();
 
     //el await aqui no se si haria falta
     await require("./public/javascript/appInit")(express,app);
-    const client = redis.createClient(); //creates a new client
+    const client = redis.createClient({host:"0.0.0.0"}); //creates a new client
 
 
     client.on('connect', function() {
@@ -25,13 +25,13 @@ appDatabase.initDatabase();
     {
         key: fs.readFileSync("./certificados/key-rsa.pem","utf8"),
         cert: fs.readFileSync("./certificados/cert.pem","utf8"),
-        requestCert: false,
-        rejectUnauthorized: false,
-        secureOptions: require("constants").SSL_OP_NO_SSLv3 | require("constants").SSL_OP_NO_TLSv1_2,
-        honorCipherOrder:true
+        // requestCert: false,
+        // rejectUnauthorized: false,
+        // secureOptions: require("constants").SSL_OP_NO_SSLv3 | require("constants").ss,
+        // honorCipherOrder:true
     }
 
-    const server = http.createServer(options,app).listen(3100)
+    const server = http.createServer(options,app).listen(process.env.PORT)
     const wss = new WebSocketServer.Server({server})
     const subscriber = client.duplicate();
 
