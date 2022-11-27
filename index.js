@@ -1,4 +1,4 @@
-const http = require("http");
+const https = require("https");
 const express = require("express");
 const app = express();
 const appDatabase = require("./public/javascript/appDatabase");
@@ -22,7 +22,7 @@ appDatabase.initDatabase();
 
     }
 
-    http.createServer(options,app).listen(config2.PORT)
+    https.createServer(options,app).listen(config2.PORT)
     
     module.exports = app;
 })();
