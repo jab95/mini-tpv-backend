@@ -31,9 +31,16 @@ appDatabase.initDatabase();
         // honorCipherOrder:true
     }
 
-    http.createServer(options,app).listen(config2.PORT)
-    // const wss = new WebSocketServer.Server({server})
-    // // const subscriber = client.duplicate();
+    const server = http.createServer(options,app).listen(config2.PORT,()=>{
+        console.log("listening ",process.env.PORT)
+    })
+    
+    const wss = new WebSocketServer.Server({server})
+
+    wss.on("connection",function connection(ws){
+        console.log("cliente conectado")
+    })
+        // // const subscriber = client.duplicate();
 
     // wss.on('connection', function open(ws) {
     //   ws.send("holaaaaaa")
