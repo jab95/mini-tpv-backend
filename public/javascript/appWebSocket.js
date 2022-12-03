@@ -1,9 +1,9 @@
-// // Importing the required modules
-// const WebSocketServer = require('ws');
+// Importing the required modules
+const WebSocketServer = require('ws');
 
-// const wss = new WebSocketServer.Server({ port: 3101 })
+const wss = new WebSocketServer.Server({ port: 3101 })
 
-// module.exports = {
-//     wss:wss
-// }
+module.exports = {
+    wss:wss
+}
 
